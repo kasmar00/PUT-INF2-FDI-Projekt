@@ -5,7 +5,7 @@ class atom:
 		self.Vx=Vx #velocity on x axis in pixels per time quant
 		self.Vy=Vy
 	
-	def move(self,time):
+	def move(self):
 		self.x+=self.Vx
 		self.y+=self.Vy
 		return(self.x,self.y)
