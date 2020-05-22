@@ -1,8 +1,8 @@
 from graphics import *
 from layout import *
+from box import *
 
-def main_loop(window):
-	#setup
+def setup_window(window):
 	window.setBackground(color_rgb(188,188,188))
 	vert_divider_right = Rectangle(Point(vetical_bar_right_w_offset,0),
 		Point(vetical_bar_right_w_offset,layout_screen_h))
@@ -16,11 +16,15 @@ def main_loop(window):
 		Point(vertical_bar_left_w_offset,horizontal_bar_height_offset))
 	horz_divider_down.setFill("black")
 	horz_divider_down.draw(window)
+
+def main_loop(window):
+	#setup
+	setup_window(window)
 	#loop
 	while not window.isClosed():
+		
 		window.update()
 	print("done")
-		
 if __name__=="__main__":
 	#make a window
 	main_window = GraphWin(layout_name,layout_screen_w,layout_screen_h,autoflush=False)
