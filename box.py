@@ -32,10 +32,10 @@ class Box:
 			self.visual_atoms[-1].draw(self.window)
 
 	def translate_vert_coordinate(self,coord):
-		return int(abs(coord-self.virt_h)*(self.h/self.virt_h))
+		return self.posY+int(abs(coord-self.virt_h)*(self.h/self.virt_h))
 
 	def translate_horz_coordinate(self,coord):
-		return int(coord*(self.w/self.virt_w))
+		return self.posX+int(coord*(self.w/self.virt_w))
 	
 	def move_atoms(self):
 		for i in range(len(self.atoms)):
