@@ -15,6 +15,8 @@ class Box:
 		self.visual_atoms = []
 		self.kappa=kappa
 		self.window = window
+		self.bbox=Rectangle(Point(posX,posY), Point(posX+w, posY+h)) #a temporary bbox
+		self.bbox.draw(window)
 		
 	#P R Z Y P A D E K	S Z C Z E G Ó L N Y
 	def add_atoms(self, n):
@@ -38,6 +40,10 @@ class Box:
 	def move_atoms(self):
 		for i in range(len(self.atoms)):
 			self.atoms[i].move()	
+	
+	def check_collisions(self):
+		for i in self.atoms:
+			i.check_collision_boundary(self.virt_w, self.virt_h)
 	
 	def update_visual_atoms(self):
 		for i in range(len(self.atoms)):
