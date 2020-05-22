@@ -1,2 +1,0 @@
-siema
-tu bylicki
