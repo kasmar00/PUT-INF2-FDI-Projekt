@@ -42,8 +42,10 @@ class Box:
 			self.atoms[i].move()	
 	
 	def check_collisions(self):
-		for i in self.atoms:
-			i.check_collision_boundary(self.virt_w, self.virt_h)
+		for i in range(len(self.atoms)):
+			self.atoms[i].check_collision_boundary(self.virt_w, self.virt_h)
+			for j in range(i+1, len(self.atoms)):
+				self.atoms[i].check_collision_others(self.atoms[j])
 	
 	def update_visual_atoms(self):
 		for i in range(len(self.atoms)):
