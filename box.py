@@ -15,6 +15,8 @@ class Box:
 		self.visual_atoms = []
 		self.kappa=kappa
 		self.window = window
+		#self.bbox=Rectangle(Point(posX,posY), Point(posX+w, posY+h)) #a temporary bbox
+		#self.bbox.draw(window)
 		
 	#P R Z Y P A D E K	S Z C Z E G Ó L N Y
 	def add_atoms(self, n):
@@ -30,14 +32,20 @@ class Box:
 			self.visual_atoms[-1].draw(self.window)
 
 	def translate_vert_coordinate(self,coord):
-		return int(abs(coord-self.virt_h)*(self.h/self.virt_h))
+		return self.posY+int(abs(coord-self.virt_h)*(self.h/self.virt_h))
 
 	def translate_horz_coordinate(self,coord):
-		return int(coord*(self.w/self.virt_w))
+		return self.posX+int(coord*(self.w/self.virt_w))
 	
 	def move_atoms(self):
 		for i in range(len(self.atoms)):
 			self.atoms[i].move()	
+	
+	def check_collisions(self):
+		for i in range(len(self.atoms)):
+			self.atoms[i].check_collision_boundary(self.virt_w, self.virt_h)
+			for j in range(i+1, len(self.atoms)):
+				self.atoms[i].check_collision_others(self.atoms[j])
 	
 	def update_visual_atoms(self):
 		for i in range(len(self.atoms)):

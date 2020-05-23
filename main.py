@@ -1,7 +1,7 @@
 from graphics import *
 from layout import *
 from box import *
-
+from time import sleep
 def setup_window(window):
 	window.setBackground(color_rgb(188,188,188))
 	vert_divider_right = Rectangle(Point(vetical_bar_right_w_offset,0),
@@ -19,11 +19,21 @@ def setup_window(window):
 
 def main_loop(window):
 	#setup
+	#chwilowo tu zmienne tego typu dam
+	num_atoms = 100
+	scaling_factor = 1
 	setup_window(window)
+	box = Box(box_offset_w,box_offset_h,box_w,box_h,box_w*scaling_factor,box_h*scaling_factor,1,window)
+	box.add_atoms(num_atoms)
+	box.display_rect.setWidth(3)
+	box.display_rect.draw(window)
 	#loop
 	while not window.isClosed():
-		
+		box.move_atoms()
+		box.check_collisions()
+		box.update_visual_atoms()
 		window.update()
+		sleep(0.01)
 	print("done")
 if __name__=="__main__":
 	#make a window
