@@ -1,6 +1,7 @@
 from graphics import *
 from layout import *
 from box import *
+from control import *
 from time import sleep
 def setup_window(window):
 	window.setBackground(color_rgb(188,188,188))
@@ -17,6 +18,7 @@ def setup_window(window):
 	horz_divider_down.setFill("black")
 	horz_divider_down.draw(window)
 
+
 def main_loop(window):
 	#setup
 	#chwilowo tu zmienne tego typu dam
@@ -27,11 +29,19 @@ def main_loop(window):
 	box.add_atoms(num_atoms)
 	box.display_rect.setWidth(3)
 	box.display_rect.draw(window)
+
+	pauseButton = Button(1400,10,100,20,testButtonFunction,False,window)
+	pauseButton.rect.setFill("pink")
 	#loop
 	while not window.isClosed():
-		box.move_atoms()
-		box.check_collisions()
-		box.update_visual_atoms()
+		clickPoint = window.checkMouse()
+		if clickPoint is not None:
+			pauseButton.is_pressed(clickPoint.getX(),clickPoint.getY())
+			#later, invoke a global all-button check function
+		if pauseButton.var == False:
+			box.move_atoms()
+			box.check_collisions()
+			box.update_visual_atoms()
 		window.update()
 		sleep(0.01)
 	print("done")
