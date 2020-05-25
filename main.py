@@ -60,20 +60,16 @@ def main_loop(window):
 	forwardButton.rect.setFill("black")
 	nextButton = Button(1520,10,20,20,testButtonFunction,False,window)
 	nextButton.rect.setFill("red")
+	buttons = [pauseButton,previousButton,nextButton,reverseButton,forwardButton]
 	#loop
 	while not window.isClosed():
 		clickPoint = window.checkMouse()
 		if clickPoint is not None:
-			pauseButton.is_pressed(clickPoint.getX(),clickPoint.getY())
-			previousButton.is_pressed(clickPoint.getX(),clickPoint.getY())
-			nextButton.is_pressed(clickPoint.getX(),clickPoint.getY())
-			if pauseButton.var == True:
-				reverseButton.is_pressed(clickPoint.getX(),clickPoint.getY())
-			if pauseButton.var == False:
-				forwardButton.is_pressed(clickPoint.getX(),clickPoint.getY())
+			check_and_logic_all(buttons,clickPoint)
 			clickPoint = None
-			#later, invoke a global all-button check function
 		if pauseButton.var == False:
+			reverseButton.var = False
+			forwardButton.var = False
 			box.move_atoms()
 			cache.insert_top(Node(deepcopy(box.atoms)))
 			cache_size+=1

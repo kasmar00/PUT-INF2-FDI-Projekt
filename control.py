@@ -17,3 +17,19 @@ class Button:
 
 def testButtonFunction(state):
 	return not state
+
+def check_and_logic_all(buttons,clickPoint):
+	pauseButton = buttons[0]
+	previousButton = buttons[1]
+	nextButton = buttons[2]
+	reverseButton = buttons[3]
+	forwardButton = buttons[4]
+	pauseButton.is_pressed(clickPoint.getX(),clickPoint.getY())
+	previousButton.is_pressed(clickPoint.getX(),clickPoint.getY())
+	nextButton.is_pressed(clickPoint.getX(),clickPoint.getY())
+	if pauseButton.var == True:
+		reverseButton.is_pressed(clickPoint.getX(),clickPoint.getY())
+	if pauseButton.var == False:
+		forwardButton.is_pressed(clickPoint.getX(),clickPoint.getY())
+
+
