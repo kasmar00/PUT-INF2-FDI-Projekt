@@ -40,7 +40,7 @@ def main_loop(window):
 	num_atoms = 100
 	scaling_factor = 1
 	setup_window(window)
-	box = Box(box_offset_w,box_offset_h,box_w,box_h,box_w*scaling_factor,box_h*scaling_factor,1,window)
+	box = Box((box_offset_w,box_offset_h),(box_w,box_h),(box_w*scaling_factor,box_h*scaling_factor),1,window)
 	box.add_atoms(num_atoms)
 	box.display_rect.setWidth(3)
 	box.display_rect.draw(window)
@@ -50,15 +50,15 @@ def main_loop(window):
 	max_cache_size = 500 #does not affect the speed of the simulation while providing a solid buffer imo
 	cache = List()
 
-	pauseButton = Button(1400,10,100,20,testButtonFunction,False,window)
+	pauseButton = Button((1400,10),(100,20),testButtonFunction,False,window)
 	pauseButton.rect.setFill("pink")
-	previousButton = Button(1360,10,20,20,testButtonFunction,False,window)
+	previousButton = Button((1360,10),(20,20),testButtonFunction,False,window)
 	previousButton.rect.setFill("red")
-	reverseButton = Button(1320,10,20,20,testButtonFunction,False,window)
+	reverseButton = Button((1320,10),(20,20),testButtonFunction,False,window)
 	reverseButton.rect.setFill("black")
-	forwardButton = Button(1560,10,20,20,testButtonFunction,False,window)
+	forwardButton = Button((1560,10),(20,20),testButtonFunction,False,window)
 	forwardButton.rect.setFill("black")
-	nextButton = Button(1520,10,20,20,testButtonFunction,False,window)
+	nextButton = Button((1520,10),(20,20),testButtonFunction,False,window)
 	nextButton.rect.setFill("red")
 	#loop
 	while not window.isClosed():

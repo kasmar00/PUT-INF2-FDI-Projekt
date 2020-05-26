@@ -3,14 +3,11 @@ from atom import atom
 from random import random, randint
 
 class Box:
-	def __init__(self,posX,posY,w,h,virt_w,virt_h,kappa,window):
-		self.posX = posX
-		self.posY = posY
-		self.w = w
-		self.h = h
-		self.virt_w = virt_w
-		self.virt_h = virt_h
-		self.display_rect = Rectangle(Point(posX,posY),Point(posX+w,posY+h))
+	def __init__(self,position,size,virtual_size,kappa,window):
+		self.posX, self.posY = position
+		self.w, self.h = size
+		self.virt_w, self.virt_h = virtual_size
+		self.display_rect = Rectangle(Point(*position),Point(*sum_pair(position, size)))
 		self.atoms=[]
 		self.visual_atoms = []
 		self.kappa=kappa
@@ -26,7 +23,7 @@ class Box:
 			y=randint(0, self.virt_h)
 			Vx=(random()*2-1)*V
 			Vy=(random()*2-1)*V
-			self.atoms.append(atom(x, y, Vx, Vy))
+			self.atoms.append(atom((x, y), (Vx, Vy)))
 			self.visual_atoms.append(Circle(Point(self.translate_horz_coordinate(x), self.translate_vert_coordinate(y)),5))
 			self.visual_atoms[-1].setFill("blue")
 			self.visual_atoms[-1].draw(self.window)
@@ -43,7 +40,7 @@ class Box:
 	
 	def check_collisions(self):
 		for i in range(len(self.atoms)):
-			self.atoms[i].check_collision_boundary(self.virt_w, self.virt_h)
+			self.atoms[i].check_collision_boundary((self.virt_w, self.virt_h))
 			for j in range(i+1, len(self.atoms)):
 				self.atoms[i].check_collision_others(self.atoms[j])
 	
@@ -52,3 +49,10 @@ class Box:
 			pos=self.visual_atoms[i].getCenter()
 			self.visual_atoms[i].move(self.translate_horz_coordinate(self.atoms[i].x)-pos.getX(),
 				self.translate_vert_coordinate(self.atoms[i].y)-pos.getY())
+
+def sum_pair(a,b): 
+	"""
+	A function to add two pairs (tuples) elementwise
+	Extra elements are ignored
+	"""
+	return(a[0]+b[0], a[1]+b[1])
