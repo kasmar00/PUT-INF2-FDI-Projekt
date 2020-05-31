@@ -42,10 +42,12 @@ def main_loop(window):
 	num_atoms = 100
 	atom_radius = 1
 	kappa = 5
-	virt_h, virt_w=200, 200
+	virt_h, virt_w=100, 200
 	scaling_factor=max(virt_h/box_h, virt_w/box_w)
+	box_offset_w_centered=box_offset_w+(box_w-virt_w/scaling_factor)/2
+	box_offset_h_centered=box_offset_h+(box_h-virt_h/scaling_factor)/2
 	setup_window(window)
-	box = Box((box_offset_w,box_offset_h),scaling_factor,(virt_w,virt_h),kappa,window)
+	box = Box((box_offset_w_centered,box_offset_h_centered),scaling_factor,(virt_w,virt_h),kappa,window)
 	box.add_atoms(num_atoms, atom_radius)
 	box.display_rect.setWidth(3)
 	box.display_rect.draw(window)
