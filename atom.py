@@ -1,18 +1,17 @@
 from numpy import array, dot
 
 class atom:
-	def __init__(self,x, y, Vx, Vy):
-		self.x=x
-		self.y=y
-		self.Vx=Vx #velocity on x axis in pixels per time quant
-		self.Vy=Vy
+	def __init__(self, position, velocity):
+		self.x, self.y=position
+		self.Vx, self.Vy=velocity #velocity on x axis in pixels per time quant
 	
 	def move(self):
 		self.x+=self.Vx
 		self.y+=self.Vy
 		return(self.x,self.y)
 
-	def check_collision_boundary(self, bx, by):
+	def check_collision_boundary(self, box_size):
+		bx,by=box_size
 		d=5 #this should be dependend on radius
 		if self.x<d or self.x>bx-d:
 			self.Vx*=-1
