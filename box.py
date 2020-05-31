@@ -3,11 +3,12 @@ from atom import atom
 from random import random, randint
 
 class Box:
-	def __init__(self,position,size,virtual_size,kappa,window):
+	def __init__(self,position,scaling_factor,virtual_size,kappa,window):
 		self.posX, self.posY = position
-		self.w, self.h = size
+		self.scaling_factor = scaling_factor
 		self.virt_w, self.virt_h = virtual_size
-		self.display_rect = Rectangle(Point(*position),Point(*sum_pair(position, size)))
+		self.w, self.h = self.virt_w/self.scaling_factor, self.virt_h/self.scaling_factor
+		self.display_rect = Rectangle(Point(*position),Point(*sum_pair(position, (self.w, self.h))))
 		self.atoms=[]
 		self.visual_atoms = []
 		self.kappa=kappa
@@ -16,15 +17,15 @@ class Box:
 		#self.bbox.draw(window)
 		
 	#P R Z Y P A D E K	S Z C Z E G Ó L N Y
-	def add_atoms(self, n):
+	def add_atoms(self, n, radius):
 		V=1/self.kappa
 		for _ in range(n):
-			x=randint(0, self.virt_w)
-			y=randint(0, self.virt_h)
+			x=randint(2*radius, self.virt_w-(2*radius))
+			y=randint(2*radius, self.virt_h-(2*radius))
 			Vx=(random()*2-1)*V
 			Vy=(random()*2-1)*V
-			self.atoms.append(atom((x, y), (Vx, Vy)))
-			self.visual_atoms.append(Circle(Point(self.translate_horz_coordinate(x), self.translate_vert_coordinate(y)),5))
+			self.atoms.append(atom((x, y), (Vx, Vy), radius))
+			self.visual_atoms.append(Circle(Point(self.translate_horz_coordinate(x), self.translate_vert_coordinate(y)),radius/self.scaling_factor))
 			self.visual_atoms[-1].setFill("blue")
 			self.visual_atoms[-1].draw(self.window)
 
