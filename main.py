@@ -37,11 +37,16 @@ def step_back(cache,box,cache_size):
 def main_loop(window):
 	#setup
 	#chwilowo tu zmienne tego typu dam
+	#wszystkie te zmienne powinny być zmienialne przez slidery/przyciski
+	#czyli main loop musi je chyba dostawać jako argumenty, ale trzeba przemyślec które konkretnie
 	num_atoms = 100
-	scaling_factor = 1
+	atom_radius = 1
+	kappa = 5
+	virt_h, virt_w=200, 200
+	scaling_factor=max(virt_h/box_h, virt_w/box_w)
 	setup_window(window)
-	box = Box((box_offset_w,box_offset_h),(box_w,box_h),(box_w*scaling_factor,box_h*scaling_factor),1,window)
-	box.add_atoms(num_atoms)
+	box = Box((box_offset_w,box_offset_h),scaling_factor,(virt_w,virt_h),kappa,window)
+	box.add_atoms(num_atoms, atom_radius)
 	box.display_rect.setWidth(3)
 	box.display_rect.draw(window)
 	
