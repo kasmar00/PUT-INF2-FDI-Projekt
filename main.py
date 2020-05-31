@@ -2,7 +2,7 @@ from graphics import *
 from layout import *
 from box import *
 from control import *
-from time import sleep
+from time import sleep, time
 from cache import *
 from copy import deepcopy
 
@@ -56,27 +56,33 @@ def main_loop(window):
 	cache_size = 0
 	max_cache_size = 500 #does not affect the speed of the simulation while providing a solid buffer imo
 	cache = List()
-
-	pauseButton = Button((1400,10),(100,20),testButtonFunction,False,window)
+	buttons_origin_point_x = 430
+	buttons_origin_point_y = 700
+	pauseButton = Button((buttons_origin_point_x,buttons_origin_point_y),(100,20),testButtonFunction,False,window)
 	pauseButton.rect.setFill("pink")
-	previousButton = Button((1360,10),(20,20),testButtonFunction,False,window)
+	previousButton = Button((buttons_origin_point_x-40,buttons_origin_point_y),(20,20),testButtonFunction,False,window)
 	previousButton.rect.setFill("red")
-	reverseButton = Button((1320,10),(20,20),testButtonFunction,False,window)
+	reverseButton = Button((buttons_origin_point_x-80,buttons_origin_point_y),(20,20),testButtonFunction,False,window)
 	reverseButton.rect.setFill("black")
-	forwardButton = Button((1560,10),(20,20),testButtonFunction,False,window)
+	forwardButton = Button((buttons_origin_point_x+160,buttons_origin_point_y),(20,20),testButtonFunction,False,window)
 	forwardButton.rect.setFill("black")
-	nextButton = Button((1520,10),(20,20),testButtonFunction,False,window)
+	nextButton = Button((buttons_origin_point_x+120,buttons_origin_point_y),(20,20),testButtonFunction,False,window)
 	nextButton.rect.setFill("red")
 	buttons = [pauseButton,previousButton,nextButton,reverseButton,forwardButton]
+	
+	speedSlider = Slider((buttons_origin_point_x-75,buttons_origin_point_y+30),250,75,5,100,window)
+
 	#loop
 	while not window.isClosed():
+		start_frametime = time()
 		clickPoint = window.checkMouse()
 		if clickPoint is not None:
 			check_and_logic_all(buttons,clickPoint)
+			speedSlider.is_pressed(clickPoint.getX(),clickPoint.getY())
 			clickPoint = None
 		if pauseButton.var == False:
 			reverseButton.var = False
-			forwardButton.var = False
+			#forwardButton.var = False
 			box.move_atoms()
 			cache.insert_top(Node(deepcopy(box.atoms)))
 			cache_size+=1
@@ -101,10 +107,13 @@ def main_loop(window):
 		elif reverseButton.var == True:	
 			cache_size = step_back(cache,box,cache_size)
 		window.update()
+		end_frametime = time()
 		if forwardButton.var == True:	
 			pass
 		else:
-			sleep(0.01)
+			tsleep = 1/speedSlider.var - (end_frametime - start_frametime)
+			if tsleep > 0:
+				sleep(tsleep)
 	print("done")
 
 if __name__=="__main__":
