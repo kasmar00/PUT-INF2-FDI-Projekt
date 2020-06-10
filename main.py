@@ -48,6 +48,7 @@ def main_loop(window):
 	box_offset_h_centered=box_offset_h+(box_h-virt_h/scaling_factor)/2
 	setup_window(window)
 	box = Box((box_offset_w_centered,box_offset_h_centered),scaling_factor,(virt_w,virt_h),kappa,window)
+	box.add_red(atom_radius)
 	box.add_atoms(num_atoms, atom_radius)
 	box.display_rect.setWidth(3)
 	box.display_rect.draw(window)
