@@ -1,4 +1,5 @@
 from numpy import array, dot
+from sys import stderr
 
 class atom:
 	def __init__(self, position, velocity, radius):
@@ -60,16 +61,18 @@ class atom:
 
 class red_atom(atom):
 	path=[]
+	collision_counter=0 #counter to count collisions of red atom with other atoms
 
 	def check_collision_others(self, other):
 		if(atom.check_collision_others(self, other)):
-			self.path.append((self.x, self.y))
-			print((0,self.x, self.y))
+			self.collision_counter+=1
+			self.path.append((self.collision_counter, self.x, self.y))
+			print((self.collision_counter,self.x, self.y), file=stderr)
 	
 	def check_collision_boundary(self, box_size):
 		if(atom.check_collision_boundary(self, box_size)):
-			self.path.append((None,self.x, self.y))
-			print((None,self.x, self.y))
+			self.path.append((0,self.x, self.y))
+			print((0,self.x, self.y), file=stderr)
 
 
 

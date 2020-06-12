@@ -5,6 +5,7 @@ from control import *
 from time import sleep, time
 from cache import *
 from copy import deepcopy
+from export import export_red_collisions
 
 def setup_window(window):
 	window.setBackground(color_rgb(188,188,188))
@@ -115,6 +116,7 @@ def main_loop(window):
 			tsleep = 1/speedSlider.var - (end_frametime - start_frametime)
 			if tsleep > 0:
 				sleep(tsleep)
+	export_red_collisions(box.atoms[0].path)
 	print("done")
 
 if __name__=="__main__":
