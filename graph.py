@@ -43,7 +43,8 @@ class Graph:
 			self.points[i] = Circle(Point(self.x+step*i,self.y-(self.h*(temp.value/self.maxValue))),1)
 			self.points[i].setFill("red")
 			self.points[i].setOutline("red")
-			self.points[i].draw(self.window)
+			if temp.value != 0:
+				self.points[i].draw(self.window)
 			temp = temp.next
 			
 if __name__=="__main__":
