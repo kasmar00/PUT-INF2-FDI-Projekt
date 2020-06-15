@@ -1,4 +1,5 @@
 from numpy import array, dot
+from sys import stderr
 
 class atom:
 	def __init__(self, position, velocity, radius):
@@ -15,10 +16,17 @@ class atom:
 		bx,by=box_size
 		epsilon=0.1*self.radius #tollerance for collisions, maybe this could be moved elsewhere, maybe it should deppend on kappa
 		d=self.radius+epsilon
+		changed=False
 		if self.x<d or self.x>bx-d:
 			self.Vx*=-1
+			changed=True
 		if self.y<d or self.y>by-d:
 			self.Vy*=-1
+			changed=True
+		if changed:
+			return(1)
+		else:
+			return(0)
 
 	def check_collision_others(self, other):
 		epsilon=0.1*(self.radius+other.radius) #tollerance for collisions, maybe this could be moved elsewhere, maybe it should deppend on kappa
@@ -33,6 +41,8 @@ class atom:
 			self.Vx, self.Vy=array(self_velocity_perpendicular)+array(other_velocity_parallel)
 			other.Vx, other.Vy=array(other_velocity_perpendicular)+array(self_velocity_parallel)
 			#print(self.Vx, self.Vy, other.Vx, other.Vy)
+			return(1)
+		return(0)
 
 	def __get_projected_vector(self, o, v):
 		x=array((self.Vx, self.Vy))
@@ -48,6 +58,21 @@ class atom:
 		onx=-oy+sx
 		ony=ox+sy
 		return(onx, ony)
+
+class red_atom(atom):
+	path=[]
+	collision_counter=0 #counter to count collisions of red atom with other atoms
+
+	def check_collision_others(self, other):
+		if(atom.check_collision_others(self, other)):
+			self.collision_counter+=1
+			self.path.append((self.collision_counter, self.x, self.y))
+			print((self.collision_counter,self.x, self.y), file=stderr)
+	
+	def check_collision_boundary(self, box_size):
+		if(atom.check_collision_boundary(self, box_size)):
+			self.path.append((0,self.x, self.y))
+			print((0,self.x, self.y), file=stderr)
 
 
 
