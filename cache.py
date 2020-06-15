@@ -28,4 +28,15 @@ class List:
 		del(temp.next)
 		temp.next = None
 
-
+def step_back(cache,box,cache_size):
+	#delete_top kind of does not like smaller lists and tbh it is kinda useless to
+	#implemet an edge case just to get 2 more iterations of caching
+	if cache_size > 2:
+		temp = cache.head
+		while temp.next is not None:
+			temp = temp.next
+		box.atoms = deepcopy(temp.value)
+		box.update_visual_atoms()
+		cache.delete_top()
+		cache_size -=1
+	return cache_size

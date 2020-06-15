@@ -1,4 +1,5 @@
 from graphics import *
+from layout import *
 
 class Button:
 	def __init__(self,pos,size,func,var,win):
@@ -45,11 +46,7 @@ def testButtonFunction(state):
 	return not state
 
 def check_and_logic_all(buttons,clickPoint):
-	pauseButton = buttons[0]
-	previousButton = buttons[1]
-	nextButton = buttons[2]
-	reverseButton = buttons[3]
-	forwardButton = buttons[4]
+	pauseButton,previousButton,nextButton,reverseButton,forwardButton = buttons
 	pauseButton.is_pressed(clickPoint.getX(),clickPoint.getY())
 	previousButton.is_pressed(clickPoint.getX(),clickPoint.getY())
 	nextButton.is_pressed(clickPoint.getX(),clickPoint.getY())
@@ -58,4 +55,32 @@ def check_and_logic_all(buttons,clickPoint):
 	if pauseButton.var == False:
 		forwardButton.is_pressed(clickPoint.getX(),clickPoint.getY())
 
+def setup_window(window):
+	window.setBackground(color_rgb(188,188,188))
+	vert_divider_right = Rectangle(Point(vetical_bar_right_w_offset,0),
+		Point(vetical_bar_right_w_offset,layout_screen_h))
+	vert_divider_right.setFill("black")
+	vert_divider_right.draw(window)
+	vert_divider_left = Rectangle(Point(vertical_bar_left_w_offset,0),
+		Point(vertical_bar_left_w_offset,layout_screen_h))
+	vert_divider_left.setFill("black")
+	vert_divider_left.draw(window)
+	horz_divider_down = Rectangle(Point(0,horizontal_bar_height_offset),
+		Point(vertical_bar_left_w_offset,horizontal_bar_height_offset))
+	horz_divider_down.setFill("black")
+	horz_divider_down.draw(window)
 
+
+def setup_buttons(window):
+	pauseButton = Button((buttons_origin_point_x,buttons_origin_point_y),(100,20),testButtonFunction,False,window)
+	pauseButton.rect.setFill("pink")
+	previousButton = Button((buttons_origin_point_x-40,buttons_origin_point_y),(20,20),testButtonFunction,False,window)
+	previousButton.rect.setFill("red")
+	reverseButton = Button((buttons_origin_point_x-80,buttons_origin_point_y),(20,20),testButtonFunction,False,window)
+	reverseButton.rect.setFill("black")
+	forwardButton = Button((buttons_origin_point_x+160,buttons_origin_point_y),(20,20),testButtonFunction,False,window)
+	forwardButton.rect.setFill("black")
+	nextButton = Button((buttons_origin_point_x+120,buttons_origin_point_y),(20,20),testButtonFunction,False,window)
+	nextButton.rect.setFill("red")
+	buttons = [pauseButton,previousButton,nextButton,reverseButton,forwardButton]
+	return buttons

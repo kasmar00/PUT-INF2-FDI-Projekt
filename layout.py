@@ -8,3 +8,5 @@ box_offset_w = 10
 box_offset_h = 10
 box_w = layout_screen_w*0.6-20
 box_h = layout_screen_h*0.75-20
+buttons_origin_point_x = 430
+buttons_origin_point_y = 700
