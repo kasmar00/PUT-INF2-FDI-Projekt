@@ -1,9 +1,11 @@
 from time import ctime,localtime
 from layout import box_h, box_w
+import os
 
 def export_red_collisions(collisions):
     cutime=localtime()
     filename="_".join([str(x) for x in cutime[:5]])
+    make_directory_if_not_exists("results/")
     file=open("results/"+filename+".txt", "w+") #export dir shall be included in .gitignore
     file.write("Atom box simulation results from "+ctime()+"\n")
     file.write("box_w "+str(box_w)+"\n")
@@ -22,6 +24,9 @@ def export_distances(file, collisions):
     avg=sum(distances)/max(collisions)[0]
     file.write(str(avg)+"\n")
 
+def make_directory_if_not_exists(path):
+    if not os.path.isdir(path):
+        os.makedirs(path)
 
 def calculate_distance(first, second): 
     """
