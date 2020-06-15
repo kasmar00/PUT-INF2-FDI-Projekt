@@ -1,5 +1,5 @@
 from graphics import *
-from atom import atom
+from atom import atom, red_atom
 from random import random, randint
 
 class Box:
@@ -28,6 +28,17 @@ class Box:
 			self.visual_atoms.append(Circle(Point(self.translate_horz_coordinate(x), self.translate_vert_coordinate(y)),radius/self.scaling_factor))
 			self.visual_atoms[-1].setFill("blue")
 			self.visual_atoms[-1].draw(self.window)
+
+	def add_red(self, radius): #mainly coppied form add_atoms
+		V=1/self.kappa
+		x=radius+1
+		y=radius+1
+		Vx=(random()*2-1)*V
+		Vy=(random()*2-1)*V
+		self.atoms.append(red_atom((x, y), (Vx, Vy), radius))
+		self.visual_atoms.append(Circle(Point(self.translate_horz_coordinate(x), self.translate_vert_coordinate(y)),radius/self.scaling_factor))
+		self.visual_atoms[-1].setFill("red")
+		self.visual_atoms[-1].draw(self.window)
 
 	def translate_vert_coordinate(self,coord):
 		return self.posY+int(abs(coord-self.virt_h)*(self.h/self.virt_h))
