@@ -5,6 +5,7 @@ from control import *
 from time import sleep, time
 from cache import *
 from copy import deepcopy
+from export import export_red_collisions
 
 def setup_window(window):
 	window.setBackground(color_rgb(188,188,188))
@@ -48,6 +49,7 @@ def main_loop(window):
 	box_offset_h_centered=box_offset_h+(box_h-virt_h/scaling_factor)/2
 	setup_window(window)
 	box = Box((box_offset_w_centered,box_offset_h_centered),scaling_factor,(virt_w,virt_h),kappa,window)
+	box.add_red(atom_radius)
 	box.add_atoms(num_atoms, atom_radius)
 	box.display_rect.setWidth(3)
 	box.display_rect.draw(window)
@@ -114,6 +116,7 @@ def main_loop(window):
 			tsleep = 1/speedSlider.var - (end_frametime - start_frametime)
 			if tsleep > 0:
 				sleep(tsleep)
+	export_red_collisions(box.atoms[0].path)
 	print("done")
 
 if __name__=="__main__":
