@@ -4,7 +4,7 @@ import os
 
 def export_red_collisions(collisions):
     cutime=localtime()
-    filename="_".join([str(x) for x in cutime[:5]])
+    filename="_".join([str(x) for x in cutime[:6]])
     make_directory_if_not_exists("results/")
     file=open("results/"+filename+".txt", "w+") #export dir shall be included in .gitignore
     file.write("Atom box simulation results from "+ctime()+"\n")
