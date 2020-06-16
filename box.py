@@ -1,6 +1,7 @@
 from graphics import *
 from atom import atom, red_atom, point_distance
 from random import random, randint, choice
+from copy import deepcopy
 
 class Box:
 	free_places=[]
@@ -48,19 +49,15 @@ class Box:
 
 	def generate_spawn_array(self, radius):
 		self.free_places=[]
-		for i in range(radius+2,self.virt_w-radius-2):
-			for j in range(radius+2,self.virt_h-radius-2):
+		for i in range(radius+2,self.virt_w-radius-1):
+			for j in range(radius+2,self.virt_h-radius-1):
 				self.free_places.append((i, j))
 		for i in self.atoms:
 			self.remove_from_spawn_array(i)
-		print(self.free_places)
 
 	def remove_from_spawn_array(self, at):
-		"""
-		#alternative way, based on distance and radius
-		print(len(self.free_places), end=" ")
-		for i in self.free_places:
-			if point_distance((at.x, at.y), i)<=5*at.radius:
+		for i in deepcopy(self.free_places):
+			if point_distance((at.x, at.y), i)<=2.1*at.radius:
 				self.free_places.remove(i)
 		"""
 		r=at.radius
@@ -69,7 +66,6 @@ class Box:
 				if (at.x+i, at.y+j) in self.free_places:
 					self.free_places.remove((at.x+i, at.y+j))
 					#print((at.x+i, at.y+j))"""
-		#print(len(self.free_places))
 
 	def translate_vert_coordinate(self,coord):
 		return self.posY+int(abs(coord-self.virt_h)*(self.h/self.virt_h))
