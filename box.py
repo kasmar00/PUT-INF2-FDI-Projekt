@@ -56,16 +56,13 @@ class Box:
 			self.remove_from_spawn_array(i)
 
 	def remove_from_spawn_array(self, at):
-		for i in deepcopy(self.free_places):
-			if point_distance((at.x, at.y), i)<=2.1*at.radius:
-				self.free_places.remove(i)
-		"""
-		r=at.radius
-		for i in range(-2*r-1, 2*r+2):
-			for j in range(-2*r-1, 2*r+2):
-				if (at.x+i, at.y+j) in self.free_places:
-					self.free_places.remove((at.x+i, at.y+j))
-					#print((at.x+i, at.y+j))"""
+		i=0
+		while i<len(self.free_places):
+		#for i in deepcopy(self.free_places):
+			if point_distance((at.x, at.y), self.free_places[i])<=2.1*at.radius:
+				self.free_places.pop(i)
+			else:
+				i+=1
 
 	def translate_vert_coordinate(self,coord):
 		return self.posY+int(abs(coord-self.virt_h)*(self.h/self.virt_h))
