@@ -74,5 +74,9 @@ class red_atom(atom):
 			self.path.append((0,self.x, self.y))
 			print((0,self.x, self.y), file=stderr)
 
-
+def point_distance(first, second):
+	firstx, firsty=first
+	secondx, secondy=second
+	distance=((firstx-secondx)**2+(firsty-secondy)**2)**0.5
+	return(distance)
 

@@ -1,8 +1,10 @@
 from graphics import *
-from atom import atom, red_atom
-from random import random, randint
+from atom import atom, red_atom, point_distance
+from random import random, randint, choice
 
 class Box:
+	free_places=[]
+
 	def __init__(self,position,scaling_factor,virtual_size,kappa,window):
 		self.posX, self.posY = position
 		self.scaling_factor = scaling_factor
@@ -19,15 +21,18 @@ class Box:
 	#P R Z Y P A D E K	S Z C Z E G Ó L N Y
 	def add_atoms(self, n, radius):
 		V=1/self.kappa
+		self.generate_spawn_array(radius)
 		for _ in range(n):
-			x=randint(2*radius, self.virt_w-(2*radius))
-			y=randint(2*radius, self.virt_h-(2*radius))
+			x, y=choice(self.free_places)#self.free_places[randint(0, len(self.free_places))]
+			# x=randint(2*radius, self.virt_w-(2*radius))
+			# y=randint(2*radius, self.virt_h-(2*radius))
 			Vx=(random()*2-1)*V
 			Vy=(random()*2-1)*V
 			self.atoms.append(atom((x, y), (Vx, Vy), radius))
 			self.visual_atoms.append(Circle(Point(self.translate_horz_coordinate(x), self.translate_vert_coordinate(y)),radius/self.scaling_factor))
 			self.visual_atoms[-1].setFill("blue")
 			self.visual_atoms[-1].draw(self.window)
+			self.remove_from_spawn_array(self.atoms[-1])
 
 	def add_red(self, radius): #mainly coppied form add_atoms
 		V=1/self.kappa
@@ -39,6 +44,24 @@ class Box:
 		self.visual_atoms.append(Circle(Point(self.translate_horz_coordinate(x), self.translate_vert_coordinate(y)),radius/self.scaling_factor))
 		self.visual_atoms[-1].setFill("red")
 		self.visual_atoms[-1].draw(self.window)
+		self.remove_from_spawn_array(self.atoms[-1])
+
+	def generate_spawn_array(self, radius):
+		self.free_places=[]
+		for i in range(radius+2,self.virt_w-radius-1):
+			for j in range(radius+2,self.virt_h-radius-1):
+				self.free_places.append((i, j))
+		for i in self.atoms:
+			self.remove_from_spawn_array(i)
+
+	def remove_from_spawn_array(self, at):
+		i=0
+		while i<len(self.free_places):
+		#for i in deepcopy(self.free_places):
+			if point_distance((at.x, at.y), self.free_places[i])<=2.1*at.radius:
+				self.free_places.pop(i)
+			else:
+				i+=1
 
 	def translate_vert_coordinate(self,coord):
 		return self.posY+int(abs(coord-self.virt_h)*(self.h/self.virt_h))
