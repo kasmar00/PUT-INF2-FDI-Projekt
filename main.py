@@ -8,16 +8,15 @@ from cache import *
 from copy import deepcopy
 from math import log
 from export import export_red_collisions
+from setup import get_args
 
-def main_loop(window):
+def main_loop(window, args):
 	#setup
 	#chwilowo tu zmienne tego typu dam
 	#wszystkie te zmienne powinny być zmienialne przez slidery/przyciski
 	#czyli main loop musi je chyba dostawać jako argumenty, ale trzeba przemyślec które konkretnie
-	num_atoms = 100
-	atom_radius = 1
-	kappa = 5
-	virt_h, virt_w=100, 200
+	num_atoms, atom_radius, kappa, size_mul=args
+	virt_h=virt_w=size_mul*atom_radius
 	scaling_factor=max(virt_h/box_h, virt_w/box_w)
 	box_offset_w_centered=box_offset_w+(box_w-virt_w/scaling_factor)/2
 	box_offset_h_centered=box_offset_h+(box_h-virt_h/scaling_factor)/2
@@ -100,8 +99,9 @@ def main_loop(window):
 	print("done")
 
 if __name__=="__main__":
+	sim_args=get_args()
 	#make a window
 	main_window = GraphWin(layout_name,layout_screen_w,layout_screen_h,autoflush=False)
 	main_window.update()
-	main_loop(main_window)
+	main_loop(main_window, sim_args)
 	main_window.close()
