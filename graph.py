@@ -3,10 +3,10 @@ from graphics import *
 class CircularList:
 	def __init__(self,size):
 		self.size = size
-		self.origin0 = Node(None)
+		self.origin0 = Node(0)
 		temp = self.origin0
 		for i in range(size-1):
-			temp.next = Node(None)
+			temp.next = Node(0)
 			temp = temp.next
 		temp.value = 1
 		temp.next = self.origin0

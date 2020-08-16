@@ -57,10 +57,10 @@ def check_and_logic_all(buttons,clickPoint):
 
 def setup_window(window):
 	window.setBackground(color_rgb(188,188,188))
-	vert_divider_right = Rectangle(Point(vetical_bar_right_w_offset,0),
-		Point(vetical_bar_right_w_offset,layout_screen_h))
-	vert_divider_right.setFill("black")
-	vert_divider_right.draw(window)
+	#vert_divider_right = Rectangle(Point(vetical_bar_right_w_offset,0),
+	#	Point(vetical_bar_right_w_offset,layout_screen_h))
+	#vert_divider_right.setFill("black")
+	#vert_divider_right.draw(window)
 	vert_divider_left = Rectangle(Point(vertical_bar_left_w_offset,0),
 		Point(vertical_bar_left_w_offset,layout_screen_h))
 	vert_divider_left.setFill("black")

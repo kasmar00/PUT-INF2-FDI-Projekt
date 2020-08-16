@@ -37,12 +37,8 @@ def main_loop(window, args):
 	speedSlider = Slider((buttons_origin_point_x-75,buttons_origin_point_y+30),250,75,5,100,window)
 
 	#graph init test code
-	testGraph = Graph(CircularList(100),(1000,200),(250,100),10,window)
+	testGraph = Graph(CircularList(200),(1100,300),(400,200),200,window)
 	testGraph.init_points()
-	it = testGraph.cll.entryPoint
-	for i in range(100):
-		it.value = 0
-		it = it.next
 	testGraph.updateGraph()
 
 	frameCount = 0
@@ -51,10 +47,6 @@ def main_loop(window, args):
 		frameCount+=1
 		start_frametime = time()
 		#graph testing code begin
-		if frameCount%10 == 0:
-			testGraph.cll.entryPoint.value = testGraph.cll.entryPoint.next.value + 1
-			testGraph.cll.entryPoint = testGraph.cll.entryPoint.next
-			testGraph.updateGraph()
 		#graph testing code end
 		clickPoint = window.checkMouse()
 		if clickPoint is not None:
@@ -72,6 +64,12 @@ def main_loop(window, args):
 				cache_size-=1
 			box.check_collisions()
 			box.update_visual_atoms()
+			if box.atoms[0].path != [] and box.atoms[0].path[-1][1]==box.atoms[0].x and box.atoms[0].path[-1][2]==box.atoms[0].y and box.atoms[0].path[-1][0] != 0:
+				testGraph.cll.entryPoint.next.value = 0
+			else: 
+				testGraph.cll.entryPoint.next.value = testGraph.cll.entryPoint.value + box.red_velocity()
+			testGraph.cll.entryPoint = testGraph.cll.entryPoint.next
+			testGraph.updateGraph()
 		elif previousButton.var == True:	
 			cache_size = step_back(cache,box,cache_size)
 			previousButton.var = previousButton.f(previousButton.var)
