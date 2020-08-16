@@ -1,6 +1,7 @@
 from graphics import *
 from atom import atom, red_atom, point_distance
 from random import random, randint, choice
+import threading
 
 class Box:
 	free_places=[]
@@ -75,7 +76,8 @@ class Box:
 	
 	def check_collisions(self):
 		for i in range(len(self.atoms)):
-			self.atoms[i].check_collision_boundary((self.virt_w, self.virt_h))
+			a=threading.Thread(target=self.atoms[i].check_collision_boundary, args=(self.virt_w, self.virt_h))
+			a.start()
 			for j in range(i+1, len(self.atoms)):
 				self.atoms[i].check_collision_others(self.atoms[j])
 	

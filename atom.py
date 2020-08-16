@@ -12,8 +12,8 @@ class atom:
 		self.y+=self.Vy
 		return(self.x,self.y)
 
-	def check_collision_boundary(self, box_size):
-		bx,by=box_size
+	def check_collision_boundary(self, bx, by):#box_size):
+		#bx,by=box_size
 		epsilon=0.1*self.radius #tollerance for collisions, maybe this could be moved elsewhere, maybe it should deppend on kappa
 		d=self.radius+epsilon
 		changed=False
