@@ -15,7 +15,7 @@ def main_loop(window, args):
 	#chwilowo tu zmienne tego typu dam
 	#wszystkie te zmienne powinny być zmienialne przez slidery/przyciski
 	#czyli main loop musi je chyba dostawać jako argumenty, ale trzeba przemyślec które konkretnie
-	num_atoms, atom_radius, kappa, size_mul=args
+	num_atoms, atom_radius, kappa, size_mul, maxFrames=args
 	virt_h=virt_w=size_mul*atom_radius
 	scaling_factor=max(virt_h/box_h, virt_w/box_w)
 	box_offset_w_centered=box_offset_w+(box_w-virt_w/scaling_factor)/2
@@ -41,11 +41,17 @@ def main_loop(window, args):
 	testGraph.init_points()
 	testGraph.updateGraph()
 
+	#text counters
+	textFrames=Text(Point(1300,400), "Klatka: 0/"+str(maxFrames))
+	textFrames.draw(window)
+
 	frameCount = 0
 	#loop
 	while not window.isClosed():
-		frameCount+=1
+		if frameCount>=maxFrames: #after completeing all frames the sim pauses
+			pauseButton.var = True
 		start_frametime = time()
+		textFrames.setText("Klatka: "+str(frameCount)+"/"+str(maxFrames))
 		#graph testing code begin
 		#graph testing code end
 		clickPoint = window.checkMouse()
@@ -57,6 +63,7 @@ def main_loop(window, args):
 			reverseButton.var = False
 			#forwardButton.var = False
 			box.move_atoms()
+			frameCount+=1
 			cache.insert_top(Node(deepcopy(box.atoms)))
 			cache_size+=1
 			if cache_size > max_cache_size:
@@ -73,8 +80,10 @@ def main_loop(window, args):
 		elif previousButton.var == True:	
 			cache_size = step_back(cache,box,cache_size)
 			previousButton.var = previousButton.f(previousButton.var)
+			frameCount-=1
 		elif nextButton.var == True:	
 			box.move_atoms()
+			frameCount+=1
 			cache.insert_top(Node(deepcopy(box.atoms)))
 			cache_size+=1
 			if cache_size > max_cache_size:
@@ -85,6 +94,7 @@ def main_loop(window, args):
 			nextButton.var = nextButton.f(nextButton.var)
 		elif reverseButton.var == True:	
 			cache_size = step_back(cache,box,cache_size)
+			frameCount-=1
 		window.update()
 		end_frametime = time()
 		if forwardButton.var == True:	
