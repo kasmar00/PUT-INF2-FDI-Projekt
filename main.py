@@ -8,7 +8,7 @@ from cache import *
 from copy import deepcopy
 from math import log
 from export import export_red_collisions
-from setup import get_args
+import setup
 
 def main_loop(window, args):
 	#setup
@@ -103,11 +103,11 @@ def main_loop(window, args):
 			tsleep = 1/speedSlider.var - (end_frametime - start_frametime)
 			if tsleep > 0:
 				sleep(tsleep)
-	export_red_collisions(box.atoms[0].path)
+	export_red_collisions(box.atoms[0].path, args)
 	print("done")
 
 if __name__=="__main__":
-	sim_args=get_args()
+	sim_args=setup.get_args()
 	#make a window
 	main_window = GraphWin(layout_name,layout_screen_w,layout_screen_h,autoflush=False)
 	main_window.update()

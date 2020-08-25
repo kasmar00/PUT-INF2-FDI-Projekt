@@ -1,15 +1,16 @@
 from time import ctime,localtime
 from layout import box_h, box_w
 import os
+from setup import arg_names
 
-def export_red_collisions(collisions):
+def export_red_collisions(collisions, args):
     cutime=localtime()
     filename="_".join([str(x) for x in cutime[:6]])
     make_directory_if_not_exists("results/")
     file=open("results/"+filename+".txt", "w+") #export dir shall be included in .gitignore
     file.write("Atom box simulation results from "+ctime()+"\n")
-    file.write("box_w "+str(box_w)+"\n")
-    file.write("box_h "+str(box_h)+"\n")
+    for i in range(len(args)):
+        file.write(arg_names[i]+": "+str(args[i])+"\n")
     for i in collisions:
         file.write(str(i)+"\n")
     export_distances(file,collisions)

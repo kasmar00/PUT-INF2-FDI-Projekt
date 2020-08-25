@@ -85,7 +85,7 @@ class Box:
 			self.visual_atoms[i].move(self.translate_horz_coordinate(self.atoms[i].x)-pos.getX(),
 				self.translate_vert_coordinate(self.atoms[i].y)-pos.getY())
 	def red_velocity(self):
-		return (self.atoms[0].Vx**2+self.atoms[1].Vy**2)**0.5
+		return (self.atoms[0].Vx**2+self.atoms[0].Vy**2)**0.5
 def sum_pair(a,b): 
 	"""
 	A function to add two pairs (tuples) elementwise
