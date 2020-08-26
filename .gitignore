@@ -1,6 +1,12 @@
 #result files
 results/
 
+#report files
+*.fdb_latexmk
+*.aux
+*.log
+*.pdf
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]

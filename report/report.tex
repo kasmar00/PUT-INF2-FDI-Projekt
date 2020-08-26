@@ -19,6 +19,10 @@
 
 \maketitle
 
+\section{Wstęp}
+Zadanie programistyczne zrealizowano w wariancie B tj. dotyczącym symulacji dwuwymiarowego gazu. Do implementacji wykorzystano język \verb+Python 3.8+ (jednak nie wykorzystywano elementów dodanych w najnowszych wersjach, zatem z program powinien z powodzeniem działać na starszych wersjach interpretera). Działanie programu przetestowano pod kontrolą systemu operacyjnego \verb+Ubuntu 20.04.1 LTS x86_64+, \verb+Linux Manjaro 20.0 x86_64+ oraz \verb+Windows 10+ Posłużono się niektórymi technikami programowania obiektowego. Program wyposażono w okno graficzne, prezentujące aktualny stan symulacji, umożliwiające zmianę upływu czasu (pauza, cofanie, krok o jedną klatkę), informacje o upływie czasu (liczby klatek) oraz wykres prezentujący w zależności od czasu drogę przebytą przez czerwony atom od ostatniego zderzenia.\\
+W dalszej części sprawozdania przedstawiono informacje formalne oraz prezentacje przeprowadzonych pomiarów.
+
 \section{Skład zespołu}
 Zadanie zostalo zrealizowane w zespole o następującym składzie:
 \begin{enumerate}
@@ -52,16 +56,16 @@ Zadanie zostalo zrealizowane w zespole o następującym składzie:
             \item Obsługę wyników symulacji: \verb+export.py+
             \item Definicje klasy \verb+Graph+ (odpowiedzialnej za wykresy wewnątrz symulacji): \verb+graph.py+
             \item Definicje klas \verb+Button+ i \verb+Slider+: \verb+control.py+
-            \item Zbiór zmiennych dotyczących ukłądu symulacji: \verb+layout.py+
+            \item Zbiór zmiennych dotyczących układu symulacji: \verb+layout.py+
             \item Zewnętrzną bibliotekę graficzną: \verb+graphics.py+
         \end{itemize}
         \item Wyniki uzyskane w symulacji: \verb+results.xxx+
     \end{enumerate}
 \section{Wykaz zapożyczonych bibliotek}
-W projekcie wykorzystano następujące zewnętrzne biblioteki:
+W projekcie wykorzystano następujące zewnętrzne biblioteki (jeżeli nie wskazano inaczej pochodzą one ze standardowej instalacji interpretera języka Python):
     \begin{enumerate}
         \item \verb+graphics.py+ (załączono całość kodu źródłowego) źródło: John M. Zelle mcsp.wartburg.edu/zelle/python/
-        \item \verb+numpy+ źródło: ??? standardowa instalacja interpretera Python
+        \item \verb+numpy+
         \item \verb+copy+
         \item \verb+time+
         \item \verb+math+
@@ -76,7 +80,7 @@ W projekcie wykorzystano następujące zewnętrzne biblioteki:
     \begin{tikzpicture}[scale=0.8]
         \begin{axis}[
         xlabel={Liczba atomów},
-        ylabel={Czas pracy [s]},
+        ylabel={Średnia droga między zderzeniami},
         %xmin=0,xmax=5500,
         %ymin=0,%ymax=0.0105,
         scale=1.4,
@@ -84,13 +88,49 @@ W projekcie wykorzystano następujące zewnętrzne biblioteki:
         ymajorgrids=true,grid style=dashed
         ]
         
-        \addplot[color=blue,mark=square]
+        \addplot[color=blue,mark=square] %500
         coordinates {
-            (10, 1)
-            (30, 2)
-            (20, 3)
+            % (10,80.2307614867876)
+            (20,12.4855115050347)
+            (30,13.3271684335507)
+            (40,15.3187389301808)
+            (50,5.17939606961693)
+            (60,4.77245146911994)
+            (70,8.46422829646755)
+            (80,4.82567600345608)
+            (90,2.62268538953038)
+            (100,2.94642267143884)
         };
-        \legend{1}
+        
+        \addplot[color=red,mark=square] %1500
+        coordinates {
+            (10,24.4724031317112)
+            (20,18.6706536290102)
+            (30,10.5719267598507)
+            (40,11.0527730797002)
+            (50,6.59623906431116)
+            (60,6.16342283639367)
+            (70,4.81262460308959)
+            (80,2.25532970958734)
+            (90,1.39945262690461)
+            (100,3.35242426128515)
+        };
+        
+       \addplot[color=green,mark=square] %1000
+        coordinates {
+            (10,20.7939677742379)
+            (20,15.7719462396346)
+            (30,12.1090745762175)
+            (40,10.459172180169)
+            (50,6.75777136277276)
+            (60,5.87356487503462)
+            (70,7.46606345850943)
+            (80,2.8278517840436)
+            (90,4.02938051000513)
+            (100,2.55368546693458)
+        };
+        \legend{500,1500,1000}
+
         \end{axis}
     \end{tikzpicture}
 \end{center}
@@ -99,21 +139,56 @@ W projekcie wykorzystano następujące zewnętrzne biblioteki:
     \begin{tikzpicture}[scale=0.8]
         \begin{axis}[
         xlabel={Liczba atomów},
-        ylabel={Czas pracy [s]},
+        ylabel={Liczba zderzeń},
         %xmin=0,xmax=5500,
         %ymin=0,%ymax=0.0105,
         scale=1.4,
-        legend pos=north east,
+        legend pos=north west,
         ymajorgrids=true,grid style=dashed
         ]
         
-        \addplot[color=blue,mark=square]
+        \addplot[color=blue,mark=square] %500
         coordinates {
-            (30, 3)
-            (10, 2)
-            (20, 1)
+            (10,1)
+            (20,6)
+            (30,5)
+            (40,5)
+            (50,11)
+            (60,6)
+            (70,10)
+            (80,13)
+            (90,24)
+            (100,16)
         };
-        \legend{1}
+        
+        \addplot[color=red,mark=square] %1500
+        coordinates {
+            (10,6)
+            (20,11)
+            (30,23)
+            (40,15)
+            (50,38)
+            (60,27)
+            (70,47)
+            (80,58)
+            (90,53)
+            (100,57)
+        };
+        
+       \addplot[color=green,mark=square] %1000
+        coordinates {
+            (10,6)
+            (20,10)
+            (30,11)
+            (40,14)
+            (50,18)
+            (60,27)
+            (70,25)
+            (80,49)
+            (90,35)
+            (100,49)
+        };
+        \legend{500,1500,1000}
         \end{axis}
     \end{tikzpicture}
 \end{center}
