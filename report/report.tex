@@ -13,53 +13,60 @@
 
 \title{Fizyka dla Informatyków, wykład\\ Sprawozdanie z realizacji zadania zespołowego programistycznego}
 \author{Jan Bylicki \and Jan Chlebek \and Ryszard Dotka \and Marcin Kasznia}
-\date{5 czerwca 2020}
+\date{31 sierpnia 2020}
 
 \begin{document}
 
 \maketitle
 
 \section{Wstęp}
-Zadanie programistyczne zrealizowano w wariancie B tj. dotyczącym symulacji dwuwymiarowego gazu. Do implementacji wykorzystano język \verb+Python 3.8+ (jednak nie wykorzystywano elementów dodanych w najnowszych wersjach, zatem z program powinien z powodzeniem działać na starszych wersjach interpretera). Działanie programu przetestowano pod kontrolą systemu operacyjnego \verb+Ubuntu 20.04.1 LTS x86_64+, \verb+Linux Manjaro 20.0 x86_64+ oraz \verb+Windows 10+ Posłużono się niektórymi technikami programowania obiektowego. Program wyposażono w okno graficzne, prezentujące aktualny stan symulacji, umożliwiające zmianę upływu czasu (pauza, cofanie, krok o jedną klatkę), informacje o upływie czasu (liczby klatek) oraz wykres prezentujący w zależności od czasu drogę przebytą przez czerwony atom od ostatniego zderzenia.\\
+Zadanie programistyczne zrealizowano w wariancie B tj. dotyczącym symulacji dwuwymiarowego gazu. Do implementacji wykorzystano język \verb+Python 3.8+ (jednak nie wykorzystywano elementów dodanych w najnowszych wersjach, zatem program powinien z powodzeniem działać na starszych wersjach interpretera). Działanie programu przetestowano pod kontrolą systemu operacyjnego \verb+Ubuntu 20.04.1 LTS x86_64+, \verb+Manjaro Linux kernel 5.4.57 x86_64+ oraz \verb+Windows 10+ Posłużono się niektórymi technikami programowania obiektowego. Program wyposażono w okno graficzne, prezentujące aktualny stan symulacji, umożliwiające zmianę upływu czasu (pauza, cofanie, krok o jedną klatkę), informacje o upływie czasu (liczby klatek) oraz wykres prezentujący w zależności od czasu drogę przebytą przez czerwony atom od ostatniego zderzenia.\\
 W dalszej części sprawozdania przedstawiono informacje formalne oraz prezentacje przeprowadzonych pomiarów.
 
 \section{Skład zespołu}
 Zadanie zostalo zrealizowane w zespole o następującym składzie:
 \begin{enumerate}
-    \item Jan Bylicki (145441)
-    \item Jan Chlebek (145380)
-    \item Ryszard Dotka (145305)
-    \item Marcin Kasznia (145379)
+    \item Jan Bylicki (145441)\footnote{\label{I4}Grupa dziekańska: I4}%\footnote{\label{Bylik}Email: jan.bylicki@student.put.poznan.pl}
+    \item Jan Chlebek (145380)\footnotemark[\ref{I4}]\footnote{\label{Chlebek}Email: jan.chlebek@student.put.poznan.pl}
+    \item Ryszard Dotka (145305)\footnotemark[\ref{I4}]%\footnote{\label{Dotka}Email: ryszard.dotka@student.put.poznan.pl}
+    \item Marcin Kasznia (145379)\footnote{Grupa dziekańska: I5}%\footnote{\label{Kasznia}Email: marcin.kasznia@student.put.poznan.pl}
 \end{enumerate}
 
 \section{Wykaz prac wykonanych przez poszczególnych członków zespołu}
     \subsection{Jan Bylicki}
+        Implementacja warstwy graficznej symulacji (część funkcji w klasie \verb+Box+, funkcja \verb+main_loop+ w pliku \verb+main.py+) oraz zapisu stanu symulacji (plik \verb+cache+)
     \subsection{Jan Chlebek}
+        Pomysł i implementacja algorytmu generującego stan początkowy (tak aby nie powstawały kolizje). Wsparcie przy towrzeniu silnika matematycznego. Implementacja skryptu generującego wyniki symulacji do pliku tekstowego. Przygotowanie sprawozdania z projektu.
     \subsection{Ryszard Dotka}
+        Implementacja kodu odpowiedzialnego za sterowanie przepływem symulacji (pauza, praca krokowa, cofanie) również w warstwie graficznej (plik \verb+control.py+). Implementacja funkcji odpowiadających za rozpoczęcie programu (plik \verb+setup.py+). Przygotowanie i przeprowadzenie pomiarów.
     \subsection{Marcin Kasznia}
+        Implementacja następujących klas: \verb+Box+, \verb+atom+, \verb+red_atom+, odpowiadających za silnik matematyczno-fizyczny symulacji. Wsparcie techniczne (\LaTeX) przy przygotowaniu sprawozdania.
 
 \section{Procentowy udział w realizacji projektu poszczególnych członków zespołu}
 \begin{enumerate}
-    \item Jan Bylicki:
-    \item Jan Chlebek:
-    \item Ryszard Dotka:
-    \item Marcin Kasznia: xx 
+    \item Jan Bylicki: 25\%
+    \item Jan Chlebek: 25\%
+    \item Ryszard Dotka: 25\%
+    \item Marcin Kasznia: 25\%
 \end{enumerate}
 \section{Wykaz przesłanych plików}
+    Kod źródłowy programu: \verb+Source_145380.zip+, zawierający:
     \begin{enumerate}
-        \item Kod źródłowy programu: \verb+source.zip+, zawierający:
+        \item Program główny: \verb+main.py+
+        \item Definicja klasy \verb+Box+: \verb+box.py+
+        \item Definicje klas \verb+atom+ i \verb+red_atom+: \verb+atom.py+
+        \item Obsługę zarejestrowanego stanu symulacji: \verb+cache.py+
+        \item Obsługę wyników symulacji: \verb+export.py+
+        \item Definicje klasy \verb+Graph+ (odpowiedzialnej za wykresy wewnątrz symulacji): \verb+graph.py+
+        \item Definicje klas \verb+Button+ i \verb+Slider+: \verb+control.py+
+        \item Zbiór zmiennych dotyczących układu symulacji: \verb+layout.py+
+        \item Zewnętrzną bibliotekę graficzną: \verb+graphics.py+
+        \item Wyniki uzyskane w symulacji: katalog \verb+report+ zawierający:
         \begin{itemize}
-            \item Program główny: \verb+main.py+
-            \item Definicja klasy \verb+Box+: \verb+box.py+
-            \item Definicje klas \verb+atom+ i \verb+red_atom+: \verb+atom.py+
-            \item Obsługę zarejestrowanego stanu symulacji: \verb+cache.py+
-            \item Obsługę wyników symulacji: \verb+export.py+
-            \item Definicje klasy \verb+Graph+ (odpowiedzialnej za wykresy wewnątrz symulacji): \verb+graph.py+
-            \item Definicje klas \verb+Button+ i \verb+Slider+: \verb+control.py+
-            \item Zbiór zmiennych dotyczących układu symulacji: \verb+layout.py+
-            \item Zewnętrzną bibliotekę graficzną: \verb+graphics.py+
+            \item Skrypt zbierający dane: \verb+results.py+
+            \item Wyniki otrzymane z pomiarów: \verb+results.csv+
+            \item Plik źródłowy sprawozdania w formacie \LaTeX: \verb+report.tex+
         \end{itemize}
-        \item Wyniki uzyskane w symulacji: \verb+results.xxx+
     \end{enumerate}
 \section{Wykaz zapożyczonych bibliotek}
 W projekcie wykorzystano następujące zewnętrzne biblioteki (jeżeli nie wskazano inaczej pochodzą one ze standardowej instalacji interpretera języka Python):
