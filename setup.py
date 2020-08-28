@@ -20,5 +20,5 @@ def get_args_cmd(names):
         try:
             args[i]=int(input(arg_names[i]+": "))
         except:
-            print("You entered an invalid number, assuming deafult value", args[i])
+            print("Input not recognized or skipped, assuming deafult value", args[i])
     return args

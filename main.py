@@ -98,7 +98,7 @@ def main_loop(window, args):
 			if tsleep > 0:
 				sleep(tsleep)
 	export_red_collisions(box.atoms[0].path, args)
-	print("done")
+	print("End of session")
 
 if __name__=="__main__":
 	sim_args=setup.get_args()
