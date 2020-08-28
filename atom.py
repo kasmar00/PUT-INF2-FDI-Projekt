@@ -14,7 +14,7 @@ class atom:
 
 	def check_collision_boundary(self, box_size):
 		bx,by=box_size
-		epsilon=0.1*self.radius #tollerance for collisions, maybe this could be moved elsewhere, maybe it should deppend on kappa
+		epsilon=0.1*self.radius #tollerance for collisions
 		d=self.radius+epsilon
 		changed=False
 		if self.x<d or self.x>bx-d:
@@ -29,7 +29,7 @@ class atom:
 			return(0)
 
 	def check_collision_others(self, other):
-		epsilon=0.1*(self.radius+other.radius) #tollerance for collisions, maybe this could be moved elsewhere, maybe it should deppend on kappa
+		epsilon=0.1*(self.radius+other.radius) #tollerance for collisions
 		d=self.radius+other.radius+epsilon
 		dist=((self.x-other.x)**2+(self.y-other.y)**2)**0.5
 		if dist<d:
