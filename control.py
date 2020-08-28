@@ -8,7 +8,9 @@ class Button:
 		self.f = func
 		self.var = var
 		self.rect = Rectangle(Point(self.x,self.y),Point(self.x+self.w,self.y+self.h))
+		self.symb = Text(Point(self.x+self.w/2,self.y+self.h/2),"")
 		self.rect.draw(win)
+		self.symb.draw(win)
 
 	def is_pressed(self,mouseX,mouseY):
 		if(mouseX > self.x and mouseX < self.x+self.w and mouseY > self.y and mouseY < self.y+self.h):
@@ -68,13 +70,19 @@ def setup_window(window):
 def setup_buttons(window):
 	pauseButton = Button((buttons_origin_point_x,buttons_origin_point_y),(100,20),testButtonFunction,False,window)
 	pauseButton.rect.setFill("pink")
+	pauseButton.symb.setText("||")
+	pauseButton.symb.setStyle("bold italic")
 	previousButton = Button((buttons_origin_point_x-40,buttons_origin_point_y),(20,20),testButtonFunction,False,window)
 	previousButton.rect.setFill("red")
+	previousButton.symb.setText("◀")
 	reverseButton = Button((buttons_origin_point_x-80,buttons_origin_point_y),(20,20),testButtonFunction,False,window)
-	reverseButton.rect.setFill("black")
+	reverseButton.rect.setFill("grey33")
+	reverseButton.symb.setText("◀◀")
 	forwardButton = Button((buttons_origin_point_x+160,buttons_origin_point_y),(20,20),testButtonFunction,False,window)
-	forwardButton.rect.setFill("black")
+	forwardButton.rect.setFill("grey33")
+	forwardButton.symb.setText("▶▶")
 	nextButton = Button((buttons_origin_point_x+120,buttons_origin_point_y),(20,20),testButtonFunction,False,window)
 	nextButton.rect.setFill("red")
+	nextButton.symb.setText("▶")
 	buttons = [pauseButton,previousButton,nextButton,reverseButton,forwardButton]
 	return buttons
