@@ -1,6 +1,6 @@
 from cache import Node
 from graphics import *
-class CircularList:
+class CircularList: #circular linked list
 	def __init__(self,size):
 		self.size = size
 		self.origin0 = Node(0)
@@ -12,9 +12,6 @@ class CircularList:
 		temp.next = self.origin0
 		self.entryPoint = self.origin0
 
-#cll is circular linked list, named the class CircularList and run out of good names to remember, sry
-
-#yeah, origin point is in bottom-left because math reasons and my lack of brain, shhhh
 class Graph:
 	def __init__(self,cll,origin,dim,init_max_value,window):
 		self.cll = cll 
@@ -27,6 +24,7 @@ class Graph:
 		self.yAxis.draw(self.window)
 		self.points = []
 		self.maxValue = init_max_value
+
 	def init_points(self):
 		step = (self.w / self.cll.size)
 		for i in range(self.cll.size):
@@ -34,11 +32,11 @@ class Graph:
 			self.points[self.points.__len__()-1].setFill("red")
 			self.points[self.points.__len__()-1].setOutline("red")
 			self.points[self.points.__len__()-1].draw(self.window)
+
 	def updateGraph(self):
 		temp = self.cll.entryPoint
 		step = (self.w / self.cll.size)
 		for i in range(self.cll.size):
-			#self.points[i].move(0,-((self.points[i].getCenter().getY()-self.y-self.h)+((self.h*((temp.value-(self.points[i].getCenter().getY()-self.y-self.h)*self.maxValue/self.h)/self.maxValue)))))
 			self.points[i].undraw()
 			self.points[i] = Circle(Point(self.x+step*i,self.y-(self.h*(temp.value/self.maxValue))),1)
 			self.points[i].setFill("red")

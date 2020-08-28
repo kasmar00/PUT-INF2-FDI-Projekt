@@ -37,17 +37,15 @@ class atom:
 			other_velocity_parallel=other.__get_projected_vector((self.x, self.y), (other.Vx, other.Vy))
 			self_velocity_perpendicular=self.__get_projected_vector(self.__get_perp_vector(other), (self.Vx, self.Vy))
 			other_velocity_perpendicular=other.__get_projected_vector(other.__get_perp_vector(self), (other.Vx, other.Vy))
-			#print(self_velocity_parallel, self_velocity_perpendicular, other_velocity_parallel, other_velocity_perpendicular)
 			self.Vx, self.Vy=array(self_velocity_perpendicular)+array(other_velocity_parallel)
 			other.Vx, other.Vy=array(other_velocity_perpendicular)+array(self_velocity_parallel)
-			#print(self.Vx, self.Vy, other.Vx, other.Vy)
 			return(1)
 		return(0)
 
 	def __get_projected_vector(self, o, v):
 		x=array((self.Vx, self.Vy))
 		y=array(o)-array((self.x, self.y))
-		newV=y * dot(x, y) / dot(y, y) #this is for projecting vector x onto vector y
+		newV=y * dot(x, y) / dot(y, y) #projecting vector x onto vector y
 		return(newV)
 
 	def __get_perp_vector(self, other):
@@ -61,7 +59,7 @@ class atom:
 
 class red_atom(atom):
 	path=[]
-	collision_counter=0 #counter to count collisions of red atom with other atoms
+	collision_counter=0 #counter for collisions of red atom with others
 
 	def check_collision_others(self, other):
 		if(atom.check_collision_others(self, other)):
@@ -79,4 +77,3 @@ def point_distance(first, second):
 	secondx, secondy=second
 	distance=((firstx-secondx)**2+(firsty-secondy)**2)**0.5
 	return(distance)
-

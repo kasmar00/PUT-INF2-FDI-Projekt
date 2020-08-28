@@ -10,10 +10,7 @@ maxFrames=2000
 arg_names=["Number of atoms", "Atom Radius", "Kappa", "Size multiplier", "Number of frames"]
 args=[num_atoms, atom_radius, kappa, size_mul, maxFrames]
 
-def get_args():
-    """
-    Function for getting simulation arguments.
-    """
+def get_args(): #Function for getting simulation arguments.
     if input_cmd:
         args_ret=get_args_cmd(arg_names)
     return args_ret

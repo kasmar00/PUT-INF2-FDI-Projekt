@@ -14,7 +14,6 @@ class Button:
 		if(mouseX > self.x and mouseX < self.x+self.w and mouseY > self.y and mouseY < self.y+self.h):
 			self.var = self.f(self.var)
 
-
 class Slider:
 	def __init__(self,pos,slen,var,vmin,vmax,win):
 		self.x, self.y = pos
@@ -57,10 +56,6 @@ def check_and_logic_all(buttons,clickPoint):
 
 def setup_window(window):
 	window.setBackground(color_rgb(188,188,188))
-	#vert_divider_right = Rectangle(Point(vetical_bar_right_w_offset,0),
-	#	Point(vetical_bar_right_w_offset,layout_screen_h))
-	#vert_divider_right.setFill("black")
-	#vert_divider_right.draw(window)
 	vert_divider_left = Rectangle(Point(vertical_bar_left_w_offset,0),
 		Point(vertical_bar_left_w_offset,layout_screen_h))
 	vert_divider_left.setFill("black")
@@ -69,7 +64,6 @@ def setup_window(window):
 		Point(vertical_bar_left_w_offset,horizontal_bar_height_offset))
 	horz_divider_down.setFill("black")
 	horz_divider_down.draw(window)
-
 
 def setup_buttons(window):
 	pauseButton = Button((buttons_origin_point_x,buttons_origin_point_y),(100,20),testButtonFunction,False,window)
