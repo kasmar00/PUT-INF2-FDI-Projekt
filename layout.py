@@ -1,4 +1,4 @@
-layout_name= "Symulacja"
+layout_name= "Symulacja B, Bylicki&Chlebek&Dotka&Kasznia"
 layout_screen_w=1600
 layout_screen_h=900
 vetical_bar_right_w_offset = layout_screen_w*0.8
