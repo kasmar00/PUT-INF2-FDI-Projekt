@@ -70,7 +70,7 @@ class red_atom(atom):
 	def check_collision_boundary(self, box_size):
 		if(atom.check_collision_boundary(self, box_size)):
 			self.path.append((0,self.x, self.y))
-			print("Collision - atoms affected: ", 0, "  position:", self.x, self.y, file=stderr)
+			print("Collision with wall, position:", self.x, self.y, file=stderr)
 
 def point_distance(first, second):
 	firstx, firsty=first
