@@ -8,9 +8,10 @@ class Button:
 		self.w, self.h= size 
 		self.f = func
 		self.var = var
-		self.role =""
+		self.role = ""
 		self.rect = Rectangle(Point(self.x,self.y),Point(self.x+self.w,self.y+self.h))
 		self.symb = Text(Point(self.x+self.w/2,self.y+self.h/2),"")
+		self.symb.setSize(8)
 		self.rect.draw(win)
 		self.symb.draw(win)
 
@@ -75,18 +76,18 @@ def setup_buttons(window):
 	pauseButton.role="Pause toggle"
 	pauseButton.rect.setFill("pink")
 	pauseButton.symb.setText("||")
-	pauseButton.symb.setStyle("bold italic")
+	pauseButton.symb.setStyle("bold")
 	previousButton = Button((buttons_origin_point_x-40,buttons_origin_point_y),(20,20),testButtonFunction,False,window)
 	previousButton.role="Previous frame"
 	previousButton.rect.setFill("red")
 	previousButton.symb.setText("◀")
 	reverseButton = Button((buttons_origin_point_x-80,buttons_origin_point_y),(20,20),testButtonFunction,False,window)
 	reverseButton.role="Play backwards"
-	reverseButton.rect.setFill("grey33")
+	reverseButton.rect.setFill("sienna")
 	reverseButton.symb.setText("◀◀")
 	forwardButton = Button((buttons_origin_point_x+160,buttons_origin_point_y),(20,20),testButtonFunction,False,window)
 	forwardButton.role="Play forward"
-	forwardButton.rect.setFill("grey33")
+	forwardButton.rect.setFill("sienna")
 	forwardButton.symb.setText("▶▶")
 	nextButton = Button((buttons_origin_point_x+120,buttons_origin_point_y),(20,20),testButtonFunction,False,window)
 	nextButton.role="Next frame"
