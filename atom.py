@@ -65,7 +65,7 @@ class red_atom(atom):
 		if(atom.check_collision_others(self, other)):
 			self.collision_counter+=1
 			self.path.append((self.collision_counter, self.x, self.y))
-			print("Collision - atoms affected: ", self.collision_counter, "  position:",self.x, self.y, file=stderr)
+			print("Collision number: ", self.collision_counter, "  position:",self.x, self.y, file=stderr)
 	
 	def check_collision_boundary(self, box_size):
 		if(atom.check_collision_boundary(self, box_size)):
