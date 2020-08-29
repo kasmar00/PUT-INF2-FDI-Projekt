@@ -11,7 +11,7 @@ class Button:
 		self.role = ""
 		self.rect = Rectangle(Point(self.x,self.y),Point(self.x+self.w,self.y+self.h))
 		self.symb = Text(Point(self.x+self.w/2,self.y+self.h/2),"")
-		self.symb.setSize(8)
+		self.symb.setSize(10)
 		self.rect.draw(win)
 		self.symb.draw(win)
 
@@ -80,18 +80,18 @@ def setup_buttons(window):
 	previousButton = Button((buttons_origin_point_x-40,buttons_origin_point_y),(20,20),testButtonFunction,False,window)
 	previousButton.role="Previous frame"
 	previousButton.rect.setFill("red")
-	previousButton.symb.setText("◀")
+	previousButton.symb.setText("<")
 	reverseButton = Button((buttons_origin_point_x-80,buttons_origin_point_y),(20,20),testButtonFunction,False,window)
 	reverseButton.role="Play backwards"
 	reverseButton.rect.setFill("sienna")
-	reverseButton.symb.setText("◀◀")
+	reverseButton.symb.setText("<<")
 	forwardButton = Button((buttons_origin_point_x+160,buttons_origin_point_y),(20,20),testButtonFunction,False,window)
 	forwardButton.role="Play forward"
 	forwardButton.rect.setFill("sienna")
-	forwardButton.symb.setText("▶▶")
+	forwardButton.symb.setText(">>")
 	nextButton = Button((buttons_origin_point_x+120,buttons_origin_point_y),(20,20),testButtonFunction,False,window)
 	nextButton.role="Next frame"
 	nextButton.rect.setFill("red")
-	nextButton.symb.setText("▶")
+	nextButton.symb.setText(">")
 	buttons = [pauseButton,previousButton,nextButton,reverseButton,forwardButton]
 	return buttons
