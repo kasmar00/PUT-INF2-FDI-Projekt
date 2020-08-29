@@ -88,6 +88,16 @@ W projekcie wykorzystano następujące zewnętrzne biblioteki (jeżeli nie wskaz
     
     \includegraphics[width=\textwidth]{Screenshot 2a.png}\\
 \section{Wykresy}
+Na poniższych wykresach przedstawiono zgodnie z poleceniem średnią odległość przebytą przez czerwony atom między zderzeniami i liczbę tych zderzeń w zależności od liczby atomów w pojemniku, dla różnych czasów trwania (liczby klatek) symulacji.\\
+Pomiary przeprowadzono dla następujących wartości startowych:
+\begin{itemize}
+    \item Liczba atomów: $n\in\{10,20, 30, 40, 50, 60, 70, 80, 90, 100\}$
+    \item Promień atomów: $r=1$
+    \item $\kappa=5$
+    \item Współczynnik wielkości pojemnika: $\eta=50$
+    \item Liczba klatek: $M \in \{500, 1000, 1500\}$
+\end{itemize}
+W trakcie testów programu wybrano wartość $\kappa=5$ jako dającą oczekiwane rezultaty w kontekście dokładności oraz szybkości działania programu.\\
 \begin{center}
     \begin{tikzpicture}[scale=1]
         \begin{axis}[
@@ -114,6 +124,20 @@ W projekcie wykorzystano następujące zewnętrzne biblioteki (jeżeli nie wskaz
             (100,2.94642267143884)
         };
         
+        \addplot[color=green,mark=square] %1000
+        coordinates {
+            (10,20.7939677742379)
+            (20,15.7719462396346)
+            (30,12.1090745762175)
+            (40,10.459172180169)
+            (50,6.75777136277276)
+            (60,5.87356487503462)
+            (70,7.46606345850943)
+            (80,2.8278517840436)
+            (90,4.02938051000513)
+            (100,2.55368546693458)
+        };
+        
         \addplot[color=red,mark=square] %1500
         coordinates {
             (10,24.4724031317112)
@@ -127,22 +151,8 @@ W projekcie wykorzystano następujące zewnętrzne biblioteki (jeżeli nie wskaz
             (90,1.39945262690461)
             (100,3.35242426128515)
         };
-        
-       \addplot[color=green,mark=square] %1000
-        coordinates {
-            (10,20.7939677742379)
-            (20,15.7719462396346)
-            (30,12.1090745762175)
-            (40,10.459172180169)
-            (50,6.75777136277276)
-            (60,5.87356487503462)
-            (70,7.46606345850943)
-            (80,2.8278517840436)
-            (90,4.02938051000513)
-            (100,2.55368546693458)
-        };
-        \legend{500,1500,1000}
-
+       
+        \legend{500 klatek,1000 klatek,1500 klatek}
         \end{axis}
     \end{tikzpicture}
 \end{center}
@@ -173,6 +183,20 @@ W projekcie wykorzystano następujące zewnętrzne biblioteki (jeżeli nie wskaz
             (100,16)
         };
         
+       \addplot[color=green,mark=square] %1000
+        coordinates {
+            (10,6)
+            (20,10)
+            (30,11)
+            (40,14)
+            (50,18)
+            (60,27)
+            (70,25)
+            (80,49)
+            (90,35)
+            (100,49)
+        };
+        
         \addplot[color=red,mark=square] %1500
         coordinates {
             (10,6)
@@ -187,22 +211,9 @@ W projekcie wykorzystano następujące zewnętrzne biblioteki (jeżeli nie wskaz
             (100,57)
         };
         
-       \addplot[color=green,mark=square] %1000
-        coordinates {
-            (10,6)
-            (20,10)
-            (30,11)
-            (40,14)
-            (50,18)
-            (60,27)
-            (70,25)
-            (80,49)
-            (90,35)
-            (100,49)
-        };
-        \legend{500,1500,1000}
+        \legend{500 klatek,1000 klatek,1500 klatek}
         \end{axis}
     \end{tikzpicture}
 \end{center}
-
+Na podstawie uzyskanych wyników można stwierdzić, że wraz ze wzrostem liczby atomów w pudełku (gęstości) spada średnia odległość pomiędzy kolejnymi zderzeniami. Jednocześnie liczba tych zderzeń w jednakowej jednostce czasu rośnie.
 \end{document}
