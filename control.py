@@ -38,7 +38,6 @@ class Slider:
 
 	def is_pressed(self,mouseX,mouseY):
 		if(mouseX > self.x and mouseX < self.x+self.len and mouseY > self.y and mouseY < self.y+30):
-			temp = self.var
 			self.var = int((self.vmax-self.vmin)*((mouseX-self.x)/self.len))+self.vmin
 			self.wedge.undraw()
 			print("New speed: ", self.var)
