@@ -11,10 +11,7 @@ from export import export_red_collisions
 import setup
 
 def main_loop(window, args):
-	#setup
-	#chwilowo tu zmienne tego typu dam
-	#wszystkie te zmienne powinny być zmienialne przez slidery/przyciski
-	#czyli main loop musi je chyba dostawać jako argumenty, ale trzeba przemyślec które konkretnie
+	#setup vars
 	num_atoms, atom_radius, kappa, size_mul, maxFrames=args
 	virt_h=virt_w=size_mul*atom_radius
 	scaling_factor=max(virt_h/box_h, virt_w/box_w)
@@ -29,11 +26,10 @@ def main_loop(window, args):
 	
 	#cache driver code:
 	cache_size = 0
-	max_cache_size = 500 #does not affect the speed of the simulation while providing a solid buffer imo
+	max_cache_size = 500
 	cache = List()
 	buttons = setup_buttons(window)
 	pauseButton,previousButton,nextButton,reverseButton,forwardButton = buttons
-
 	speedSlider = Slider((buttons_origin_point_x-75,buttons_origin_point_y+30),250,75,5,100,window)
 
 	#graph init test code
@@ -44,16 +40,14 @@ def main_loop(window, args):
 	#text counters
 	textFrames=Text(Point(1300,400), "Klatka: 0/"+str(maxFrames))
 	textFrames.draw(window)
-
 	frameCount = 0
+
 	#loop
 	while not window.isClosed():
 		if frameCount>=maxFrames: #after completeing all frames the sim pauses
 			pauseButton.var = True
 		start_frametime = time()
 		textFrames.setText("Klatka: "+str(frameCount)+"/"+str(maxFrames))
-		#graph testing code begin
-		#graph testing code end
 		clickPoint = window.checkMouse()
 		if clickPoint is not None:
 			check_and_logic_all(buttons,clickPoint)
@@ -61,7 +55,7 @@ def main_loop(window, args):
 			clickPoint = None
 		if pauseButton.var == False:
 			reverseButton.var = False
-			#forwardButton.var = False
+			forwardButton.var = False
 			box.move_atoms()
 			frameCount+=1
 			cache.insert_top(Node(deepcopy(box.atoms)))
@@ -104,7 +98,7 @@ def main_loop(window, args):
 			if tsleep > 0:
 				sleep(tsleep)
 	export_red_collisions(box.atoms[0].path, args)
-	print("done")
+	print("End of session")
 
 if __name__=="__main__":
 	sim_args=setup.get_args()

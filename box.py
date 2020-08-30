@@ -15,17 +15,12 @@ class Box:
 		self.visual_atoms = []
 		self.kappa=kappa
 		self.window = window
-		#self.bbox=Rectangle(Point(posX,posY), Point(posX+w, posY+h)) #a temporary bbox
-		#self.bbox.draw(window)
-		
-	#P R Z Y P A D E K	S Z C Z E G Ó L N Y
+
 	def add_atoms(self, n, radius):
 		V=1/self.kappa
 		self.generate_spawn_array(radius)
 		for _ in range(n):
-			x, y=choice(self.free_places)#self.free_places[randint(0, len(self.free_places))]
-			# x=randint(2*radius, self.virt_w-(2*radius))
-			# y=randint(2*radius, self.virt_h-(2*radius))
+			x, y=choice(self.free_places)
 			Vx=(random()*2-1)*V
 			Vy=(random()*2-1)*V
 			self.atoms.append(atom((x, y), (Vx, Vy), radius))
@@ -57,7 +52,6 @@ class Box:
 	def remove_from_spawn_array(self, at):
 		i=0
 		while i<len(self.free_places):
-		#for i in deepcopy(self.free_places):
 			if point_distance((at.x, at.y), self.free_places[i])<=2.1*at.radius:
 				self.free_places.pop(i)
 			else:
@@ -84,11 +78,9 @@ class Box:
 			pos=self.visual_atoms[i].getCenter()
 			self.visual_atoms[i].move(self.translate_horz_coordinate(self.atoms[i].x)-pos.getX(),
 				self.translate_vert_coordinate(self.atoms[i].y)-pos.getY())
+
 	def red_velocity(self):
 		return (self.atoms[0].Vx**2+self.atoms[0].Vy**2)**0.5
+
 def sum_pair(a,b): 
-	"""
-	A function to add two pairs (tuples) elementwise
-	Extra elements are ignored
-	"""
 	return(a[0]+b[0], a[1]+b[1])

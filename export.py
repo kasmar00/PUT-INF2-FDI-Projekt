@@ -7,7 +7,7 @@ def export_red_collisions(collisions, args):
     cutime=localtime()
     filename="_".join([str(x) for x in cutime[:6]])
     make_directory_if_not_exists("results/")
-    file=open("results/"+filename+".txt", "w+") #export dir shall be included in .gitignore
+    file=open("results/"+filename+".txt", "w+") #export dir
     file.write("Atom box simulation results from "+ctime()+"\n")
     for i in range(len(args)):
         file.write(arg_names[i]+": "+str(args[i])+"\n")
@@ -30,10 +30,6 @@ def make_directory_if_not_exists(path):
         os.makedirs(path)
 
 def calculate_distance(first, second): 
-    """
-    generic function to calculate distances
-    takes three element tuples and ignores the first element
-    """
     a, firstx, firsty=first
     a, secondx, secondy=second
     distance=((firstx-secondx)**2+(firsty-secondy)**2)**0.5
