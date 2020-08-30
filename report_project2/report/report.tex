@@ -9,6 +9,7 @@
 \usepackage{pgfplots}
 \usepackage{gensymb}
 \usepackage{polski}
+\usepackage{physics}
 
 
 \title{Fizyka dla Informatyków, wykład\\ Sprawozdanie z realizacji drugiego zadania zespołowego programistycznego}
@@ -39,10 +40,8 @@ Zadanie zostalo zrealizowane w zespole o następującym składzie:
 \end{enumerate}
 
 \section{Wykaz prac wykonanych przez członków zespołu}
-    \subsection{Jan Bylicki}
-    \subsection{Jan Chlebek}
-    \subsection{Ryszard Dotka}
-    \subsection{Marcin Kasznia}
+    Zadanie zostało rozwiązane wspólnie podczas dwóch spotkań z wykorzystaniem komunikatora głosowego. W przeciwieństwie do zespołowego zadania programistycznego całość stanowi pracę wspólną bez wyraźnego podziału obowiązków.
+    
 
 \section{Procentowy udział w realizacji projektu członków zespołu}
 \begin{enumerate}
@@ -104,10 +103,16 @@ Szczegółowe pomiary prawdopodobieństwa:\\
 \section{Wyniki}
 Do obliczenia stanu kubitu w eksperymencie posłużono się programem \verb+Mathematica+. Całość obliczeń przedstawiono w załączonym notatniku (plik \verb+Obliczenia+).\\
 Stan kubitu uzyskany w eksperymencie przedstawia się następująco:
-$$ \left(\begin{matrix}
-0.999961 \\
-1
-\end{matrix}\right)$$
+$$ q=\left(\begin{matrix}0.999961 \\-0.00874899-0.000749913 i\end{matrix}\right)$$
+Natomiast stan kubitu wyliczony teoretycznie:
+$$q_0=\left(\begin{matrix}-1\\0\end{matrix}\right)$$
+Znak wyniku można pominąć, gdyż jest to wartość globalnej fazy kubitu, której nie można zmierzyć w eksperymencie, faktyczna wartość wynosi:
+$$q_0=\left(\begin{matrix}1\\0\end{matrix}\right)$$
+Błąd względny określimy jako $$\delta_x=\frac{\Delta x}{x_0}=\frac{x-x_0}{x_0}$$ gdzie: $x$ to wartość mierzona a $x_0$ wartość dokładna.\\
+Błąd względny wartości otrzymanej eksperymentalnie (odniesiony wyłącznie do pierwszej wartości wektora) wynosi:
+$$\delta_q=\frac{q-q_0}{q_0}=\frac{0.999961-1}{1}=-0.000039=-0.0039\%$$
+Błąd w mierzeniu wartości na drodze eksperymentalnej jest zdecydowanie mniejszy niż $2\%$.\\
+Warto zauważyć że tak niski błąd mógł wynikać z faktu, iż uzyskany stan kubitu dopowiada stanowi $\ket{0}$, czyli domyślnemu stanowi startowemu kubitu.
 
 
 
