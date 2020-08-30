@@ -1,0 +1,115 @@
+\documentclass{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{anysize}
+\marginsize{2.5cm}{2.5cm}{1cm}{2.5cm}
+\usepackage{amsmath} %koniecznie
+\usepackage{amssymb,amsfonts,amsthm}%dodatkowo
+\usepackage{tikz}
+\usepackage{pgfplots}
+\usepackage{gensymb}
+\usepackage{polski}
+
+
+\title{Fizyka dla Informatyków, wykład\\ Sprawozdanie z realizacji drugiego zadania zespołowego programistycznego}
+\author{Jan Bylicki \and Jan Chlebek \and Ryszard Dotka \and Marcin Kasznia}
+\date{31 sierpnia 2020}
+
+\begin{document}
+
+\maketitle
+
+\section{Wstęp}
+Zadanie programistyczne zrealizowano, zgodnie z sugestiami, przy pomocy języka Python na platformie kwantowej IBM w notatniku Jupytera. Otrzymane wyniki wypisano w ostatniej komórce i na ich podstawie obliczono stan kubitu przy pomocy programu \verb+Mathematica+.\\
+Jako dane wejściowe obliczono (na podstawie numerów indeksów):
+\begin{align*}
+    k_1&=1\\
+    k_2&=1\\
+    k_3&=1
+\end{align*}
+W dalszej części sprawozdania przedstawiono informacje formalne oraz prezentacje przeprowadzonych pomiarów.
+
+\section{Skład zespołu}
+Zadanie zostalo zrealizowane w zespole o następującym składzie:
+\begin{enumerate}
+    \item Jan Bylicki (I4.1; 145441; jan.bylicki@student.put.poznan.pl)
+    \item Jan Chlebek (I4.1; 145380; jan.chlebek@student.put.poznan.pl)
+    \item Ryszard Dotka (I4.1, 145305; ryszard.dotka@student.put.poznan.pl)
+    \item Marcin Kasznia (I5.1; 145379; marcin.kasznia@student.put.poznan.pl)
+\end{enumerate}
+
+\section{Wykaz prac wykonanych przez członków zespołu}
+    \subsection{Jan Bylicki}
+    \subsection{Jan Chlebek}
+    \subsection{Ryszard Dotka}
+    \subsection{Marcin Kasznia}
+
+\section{Procentowy udział w realizacji projektu członków zespołu}
+\begin{enumerate}
+    \item Jan Bylicki: 25\%
+    \item Jan Chlebek: 25\%
+    \item Ryszard Dotka: 25\%
+    \item Marcin Kasznia: 25\%
+\end{enumerate}
+\section{Wykaz przesłanych plików}
+    Kod źródłowy programu: \verb+Source_2_145380.zip+, zawierający:
+    \begin{enumerate}
+        \item Kod źródłowy dla symulatora kwantowego: \verb+QSim.ipynb+ i \verb+QSim.pdf+
+        \item Kod źródłowy obliczeń w Mathematice: \verb+Obliczenia.nb+ i \verb+Obliczenia.pdf+
+        
+    \end{enumerate}
+\section{Wykaz zapożyczonych bibliotek}
+W projekcie wykorzystano następujące zewnętrzne biblioteki:
+    \begin{enumerate}
+        \item \verb+qiskit+
+    \end{enumerate}
+\section{Zrzuty ekranowe ilustrujące działanie programu}
+Obwody kwantowe przygotowane dla pomiarów x, y, z:\\
+\includegraphics[]{pomiarx.png}\\
+\includegraphics[]{pomiary.png}\\
+\includegraphics[]{pomiarz.png}\\
+W tym miejscu warto wskazać, iż kolejność zastosowania bramek $U_1$ i $U_3$ nie jest w tym przypadku istotna, gdyż iloczyn macierzy im odpowiadający, dla przyjętych wartości wejściowych, jest przemienny.\\
+Pomiary przeprowadzono dla próby $n=4000$. Poniżej zaprezentowano rozkład prawdopodobieństw (prawdopodobieństwa uzyskania danego wyniku) dla każdego typu pomiaru.
+\begin{center}
+    \begin{tikzpicture}[scale=1.2]
+        \begin{axis}[
+            ybar,
+            bar width=20pt,
+            enlargelimits=0.15,
+            legend style={at={(0.5,-0.15)},
+              anchor=north,legend columns=-1},
+            ylabel={Prawdopodobieństwo},
+            symbolic x coords={X,Y,Z},
+            xtick=data,
+            nodes near coords,
+            nodes near coords align={vertical},
+            ]
+        \addplot coordinates {(X,0.49125) (Y,0.49925) (Z,1)};
+        \addplot coordinates {(X,0.50875) (Y,0.50075) (Z,0)};
+        \legend{0,1}
+        \end{axis}
+    \end{tikzpicture}
+\end{center}
+
+Szczegółowe pomiary prawdopodobieństwa:\\
+\begin{center}
+\begin{tabular}{l|l|l|}
+\cline{2-3}
+                        & 0       & 1       \\ \hline
+\multicolumn{1}{|l|}{X} & 0.49125 & 0.50875 \\ \hline
+\multicolumn{1}{|l|}{Y} & 0.49925 & 0.50075 \\ \hline
+\multicolumn{1}{|l|}{Z} & 1.0     & 0.0     \\ \hline
+\end{tabular}
+\end{center}
+\section{Wyniki}
+Do obliczenia stanu kubitu w eksperymencie posłużono się programem \verb+Mathematica+. Całość obliczeń przedstawiono w załączonym notatniku (plik \verb+Obliczenia+).\\
+Stan kubitu uzyskany w eksperymencie przedstawia się następująco:
+$$ \left(\begin{matrix}
+0.999961 \\
+1
+\end{matrix}\right)$$
+
+
+
+
+\end{document}
