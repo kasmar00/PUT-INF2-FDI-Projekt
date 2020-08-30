@@ -22,7 +22,7 @@
 
 \section{Wstęp}
 Zadanie programistyczne zrealizowano, zgodnie z sugestiami, przy pomocy języka Python na platformie kwantowej IBM w notatniku Jupytera. Otrzymane wyniki wypisano w ostatniej komórce i na ich podstawie obliczono stan kubitu przy pomocy programu \verb+Mathematica+.\\
-Jako dane wejściowe obliczono (na podstawie numerów indeksów):
+Jako dane wejściowe (na podstawie numerów indeksów) obliczono co następuje:
 \begin{align*}
     k_1&=1\\
     k_2&=1\\
@@ -40,7 +40,7 @@ Zadanie zostalo zrealizowane w zespole o następującym składzie:
 \end{enumerate}
 
 \section{Wykaz prac wykonanych przez członków zespołu}
-    Zadanie zostało rozwiązane wspólnie podczas dwóch spotkań z wykorzystaniem komunikatora głosowego. W przeciwieństwie do zespołowego zadania programistycznego całość stanowi pracę wspólną bez wyraźnego podziału obowiązków.
+    Zadanie zostało rozwiązane wspólnie podczas dwóch spotkań z wykorzystaniem komunikatora głosowego. W przeciwieństwie do pierwszego zespołowego zadania programistycznego całość stanowi pracę wspólną bez wyraźnego podziału obowiązków.
     
 
 \section{Procentowy udział w realizacji projektu członków zespołu}
@@ -61,13 +61,14 @@ Zadanie zostalo zrealizowane w zespole o następującym składzie:
 W projekcie wykorzystano następujące zewnętrzne biblioteki:
     \begin{enumerate}
         \item \verb+qiskit+
+        \item \verb+math+
     \end{enumerate}
 \section{Zrzuty ekranowe ilustrujące działanie programu}
 Obwody kwantowe przygotowane dla pomiarów x, y, z:\\
 \includegraphics[]{pomiarx.png}\\
 \includegraphics[]{pomiary.png}\\
 \includegraphics[]{pomiarz.png}\\
-W tym miejscu warto wskazać, iż kolejność zastosowania bramek $U_1$ i $U_3$ nie jest w tym przypadku istotna, gdyż iloczyn macierzy im odpowiadający, dla przyjętych wartości wejściowych, jest przemienny.\\
+W tym miejscu warto wskazać, iż kolejność zastosowania bramek $U_1$ i $U_3$ nie jest w tym przypadku istotna, gdyż iloczyn macierzy im odpowiadający (dla przyjętych wartości wejściowych) jest przemienny.\\
 Pomiary przeprowadzono dla próby $n=4000$. Poniżej zaprezentowano rozkład prawdopodobieństw (prawdopodobieństwa uzyskania danego wyniku) dla każdego typu pomiaru.
 \begin{center}
     \begin{tikzpicture}[scale=1.2]
@@ -106,13 +107,13 @@ Stan kubitu uzyskany w eksperymencie przedstawia się następująco:
 $$ q=\left(\begin{matrix}0.999961 \\-0.00874899-0.000749913 i\end{matrix}\right)$$
 Natomiast stan kubitu wyliczony teoretycznie:
 $$q_0=\left(\begin{matrix}-1\\0\end{matrix}\right)$$
-Znak wyniku można pominąć, gdyż jest to wartość globalnej fazy kubitu, której nie można zmierzyć w eksperymencie, faktyczna wartość wynosi:
+Znak wyniku może zostać zignorowany, gdyż wynika on z przyjmowania odmiennej globalnej fazy kubitu na drodze eksperymentalnej. Oznacza to, że faktyczna wartość przyjmowana do obliczeń analitycznych wynosi:
 $$q_0=\left(\begin{matrix}1\\0\end{matrix}\right)$$
-Błąd względny określimy jako $$\delta_x=\frac{\Delta x}{x_0}=\frac{x-x_0}{x_0}$$ gdzie: $x$ to wartość mierzona a $x_0$ wartość dokładna.\\
+Błąd względny określony został jako: $$\delta_x=\frac{\Delta x}{x_0}=\frac{x-x_0}{x_0}$$ gdzie: $x$ to wartość mierzona a $x_0$ wartość dokładna.\\
 Błąd względny wartości otrzymanej eksperymentalnie (odniesiony wyłącznie do pierwszej wartości wektora) wynosi:
 $$\delta_q=\frac{q-q_0}{q_0}=\frac{0.999961-1}{1}=-0.000039=-0.0039\%$$
 Błąd w mierzeniu wartości na drodze eksperymentalnej jest zdecydowanie mniejszy niż $2\%$.\\
-Warto zauważyć że tak niski błąd mógł wynikać z faktu, iż uzyskany stan kubitu dopowiada stanowi $\ket{0}$, czyli domyślnemu stanowi startowemu kubitu.
+Warto zauważyć, że tak niski błąd mógł wynikać z faktu, iż uzyskany stan kubitu dopowiada stanowi $\ket{0}$, czyli domyślnemu stanowi startowemu.
 
 
 
