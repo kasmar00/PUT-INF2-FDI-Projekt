@@ -16,6 +16,7 @@ def get_args(): #Function for getting simulation arguments.
     return args_ret
 
 def get_args_cmd(names):
+    print("To skip and load default value, press Enter")
     for i in range(len(args)):
         try:
             args[i]=int(input(arg_names[i]+": "))
