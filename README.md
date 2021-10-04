@@ -11,6 +11,8 @@ Computing 2 sem, Faculty of Computing and Telecomunications Poznań Univeristy o
 
 ## Running
 
+1. Install dependencies from `requirements.txt`
+1. Install Tkinter (ubuntu apt: `python3-tk`)
 1. Run the `main.py`
 
 # Symulacja dwuwymiarowego gazu
@@ -23,5 +25,6 @@ Informatyka 2 sem, Wydział Informatyki i Telekomunikacji, Politechnika Poznańs
 
 ## Uruchomienie
 
-1.  Uruchomić plik `main.py`
-
+1. Zainstaluj zależności z `requirements.txt`
+1. Zainstaluj Tkinter (ubuntu apt: `python3-tk`)
+1. Uruchom plik `main.py`
